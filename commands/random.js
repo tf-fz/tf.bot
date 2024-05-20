@@ -6,11 +6,6 @@ const { SlashCommandBuilder } = require('discord.js');
 let g = require('./songs/geki.js');
 
 
-			
-
-
-
-
 // 以下の形式にすることで、他のファイルでインポートして使用できるようになります.
 module.exports = {
 	data: new SlashCommandBuilder()
