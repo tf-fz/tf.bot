@@ -60,7 +60,22 @@ client.on(Events.MessageCreate, message => {
         message.channel.send("ゴマガキきもい");
     }else if (message.content.includes("<@957571632694718464>")) {
         message.channel.send("重機さん、でしょ？ｗ");
+    }else if (message.content.includes("<@1240650640116547674>")) {
+        message.channel.send("はい、なんの要件でしょうか？");
     }
 });
+let gumirand;
+client.on(Events.MessageCreate, message => {
+    if (message.author.id === "1081940226219446436") {
+	if (message.content){
+		 gumirand = Math.floor( Math.random() * 5)
+		if (gumirand == 0){
+			message.channel.send("うるさい黙れ");};};}
+});
+/*client.on(Events.MessageCreate, message => {
+    if (message.author.id === "812959370467606549") {
+    if (message.content){
+	message.channel.send("test");};}
+});*/
 // ログイン
 client.login(token);
