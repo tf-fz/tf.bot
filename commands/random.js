@@ -6,6 +6,11 @@ const { SlashCommandBuilder } = require('discord.js');
 let g = require('./songs/geki.js');
 
 
+			
+
+
+
+
 // 以下の形式にすることで、他のファイルでインポートして使用できるようになります.
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -68,6 +73,8 @@ module.exports = {
 				arr = arr.concat(g.g153)
 			}if((difmin <= 15.4)&&(difmax >= 15.4)){
 				arr = arr.concat(g.g154)
+			}if((difmin <= 15.5)&&(difmax >= 15.5)){
+				arr = arr.concat(g.g155)
 			}if((difmin <= 15.6)&&(difmax >= 15.6)){
 				arr = arr.concat(g.g156)
 			}if((difmin <= 15.7)&&(difmax >= 15.7)){
@@ -75,9 +82,17 @@ module.exports = {
 			}
 		}
 
+		/*let data = g.song.filter((o,index) =>
+			if (p.dev === "オンゲキ" &&
+				){
+				return ture
+			}})*/
+
 		let rand = Math.floor( Math.random() * arr.length);
 		if (difmin > difmax){
 			await interaction.reply("max"+difmax+" , min"+difmin+" , お前頭グミ");
+		}else if (difmin == difmax && difmin == 15.5){
+			await interaction.reply(game+"に"+difmin+"なんてねぇよバーカ");
 		}else if (difmin == difmax){
 			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"\n"+ arr[rand]);
 		}else if (difmin < difmax){
