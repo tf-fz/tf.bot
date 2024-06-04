@@ -52,8 +52,11 @@ let cooltime = () => {
 }
 
 client.on(Events.MessageCreate, message => {
-if (cooldown == 0){
     if (message.author.bot) return;
+    if (message.content.includes("@everyone")) {
+        message.react('<:T_SHINE:1109313453568557096>');
+    }
+if (cooldown == 0){
     if (message.content.includes("tfちゅ😘")) {
         message.channel.send("グミ死ねほんまキモイそんなことしてる暇あったら留年しないようにちゃんと学校行ったら？");
     }else if (message.content.includes("<@812959370467606549>😘")) {
