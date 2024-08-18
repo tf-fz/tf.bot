@@ -39,29 +39,20 @@ module.exports = {
 		let difmin = interaction.options.getNumber('定数最小値');
 		let difmax = interaction.options.getNumber('定数最大値');
 
-		
+//空の配列を作成	
 let song = []
+//別ファイルにある曲名リストをsongに入れる
 song = song.concat(g.song)
 
+
+		//機種の絞り込み
 		let data0 = song.filter( p => p.dev == game)
+		//定数下限の絞り込み
 		let data1 = data0.filter( p => p.con >= difmin)
+		//定数上限の絞り込み
 		let data = data1.filter( q => q.con <= difmax).map(m => m.曲名)
 
-		/*let data = song.filter( function(p) {
-			return p.con <= 15;}).map(m => m.曲名)*/
-		console.log(data)		
 
-		/*let rand = Math.floor( Math.random() * arr.length);
-		if (difmin > difmax){
-			await interaction.reply("max"+difmax+" , min"+difmin+" , お前頭グミ");
-		}else if (difmin == difmax && difmin == 15.5){
-			await interaction.reply(game+"に"+difmin+"なんてねぇよバーカ");
-		}else if (difmin == difmax){
-			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"\n"+ arr[rand]);
-		}else if (difmin < difmax){
-			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"～"+difmax+"\n"+ arr[rand]);
-		}
-		*/
 		
 		let rand = Math.floor( Math.random() * data.length);
 		if (difmin > difmax){
