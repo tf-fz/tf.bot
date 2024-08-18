@@ -39,56 +39,19 @@ module.exports = {
 		let difmin = interaction.options.getNumber('定数最小値');
 		let difmax = interaction.options.getNumber('定数最大値');
 
-		//空の配列作って必要なのだけ結合.
-		let arr = [];
-	
-		if (game == 'オンゲキ'){
-			if((difmin <= 14.0)&&(difmax >= 14.0)){
-				arr = arr.concat(g.g140)
-			}if((difmin <= 14.1)&&(difmax >= 14.1)){
-				arr = arr.concat(g.g141)
-			}if((difmin <= 14.2)&&(difmax >= 14.2)){
-				arr = arr.concat(g.g142)
-			}if((difmin <= 14.3)&&(difmax >= 14.3)){
-				arr = arr.concat(g.g143)
-			}if((difmin <= 14.4)&&(difmax >= 14.4)){
-				arr = arr.concat(g.g144)
-			}if((difmin <= 14.5)&&(difmax >= 14.5)){
-				arr = arr.concat(g.g145)
-			}if((difmin <= 14.6)&&(difmax >= 14.6)){
-				arr = arr.concat(g.g146)
-			}if((difmin <= 14.7)&&(difmax >= 14.7)){
-				arr = arr.concat(g.g147)
-			}if((difmin <= 14.8)&&(difmax >= 14.8)){
-				arr = arr.concat(g.g148)
-			}if((difmin <= 14.9)&&(difmax >= 14.9)){
-				arr = arr.concat(g.g149)
-			}if((difmin <= 15.0)&&(difmax >= 15.0)){
-				arr = arr.concat(g.g150)
-			}if((difmin <= 15.1)&&(difmax >= 15.1)){
-				arr = arr.concat(g.g151)
-			}if((difmin <= 15.2)&&(difmax >= 15.2)){
-				arr = arr.concat(g.g152)
-			}if((difmin <= 15.3)&&(difmax >= 15.3)){
-				arr = arr.concat(g.g153)
-			}if((difmin <= 15.4)&&(difmax >= 15.4)){
-				arr = arr.concat(g.g154)
-			}if((difmin <= 15.5)&&(difmax >= 15.5)){
-				arr = arr.concat(g.g155)
-			}if((difmin <= 15.6)&&(difmax >= 15.6)){
-				arr = arr.concat(g.g156)
-			}if((difmin <= 15.7)&&(difmax >= 15.7)){
-				arr = arr.concat(g.g157)
-			}
-		}
+		
+let song = []
+song = song.concat(g.song)
 
-		/*let data = g.song.filter((o,index) =>
-			if (p.dev === "オンゲキ" &&
-				){
-				return ture
-			}})*/
+		let data0 = song.filter( p => p.dev == game)
+		let data1 = data0.filter( p => p.con >= difmin)
+		let data = data1.filter( q => q.con <= difmax).map(m => m.曲名)
 
-		let rand = Math.floor( Math.random() * arr.length);
+		/*let data = song.filter( function(p) {
+			return p.con <= 15;}).map(m => m.曲名)*/
+		console.log(data)		
+
+		/*let rand = Math.floor( Math.random() * arr.length);
 		if (difmin > difmax){
 			await interaction.reply("max"+difmax+" , min"+difmin+" , お前頭グミ");
 		}else if (difmin == difmax && difmin == 15.5){
@@ -98,6 +61,19 @@ module.exports = {
 		}else if (difmin < difmax){
 			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"～"+difmax+"\n"+ arr[rand]);
 		}
+		*/
+		
+		let rand = Math.floor( Math.random() * data.length);
+		if (difmin > difmax){
+			await interaction.reply("max"+difmax+" , min"+difmin+" , お前頭グミ");
+		}else if (difmin == difmax && difmin == 15.5){
+			await interaction.reply(game+"に"+difmin+"なんてねぇよバーカ");
+		}else if (difmin == difmax){
+			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"\n"+ data[rand]);
+		}else if (difmin < difmax){
+			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"～"+difmax+"\n"+ data[rand]);
+		}
 	},
 };
+
 
