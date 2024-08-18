@@ -21,7 +21,9 @@ module.exports = {
 				.setDescription('対応機種')
 				.setRequired(true)
 				.addChoices(
-					{ name: 'オンゲキ', value:'オンゲキ'},))
+					{ name: 'オンゲキ', value:'オンゲキ'},
+					{ name: 'チュウニズム', value:'チュウニズム'},
+					{ name: 'maimai', value:'maimai'},))
 		.addNumberOption(option =>
 			option.setName('定数最小値')
 				.setDescription('定数の下限を設定します')
@@ -55,10 +57,12 @@ song = song.concat(g.song)
 
 		
 		let rand = Math.floor( Math.random() * data.length);
-		if (difmin > difmax){
+		if (game == 'チュウニズム'){
+			await interaction.reply(game+"のランダム選曲は準備中です");
+		}else if (game == 'maimai'){
+			await interaction.reply(game+"のランダム選曲は準備中です");
+		}else if (difmin > difmax){
 			await interaction.reply("max"+difmax+" , min"+difmin+" , お前頭グミ");
-		}else if (difmin == difmax && difmin == 15.5){
-			await interaction.reply(game+"に"+difmin+"なんてねぇよバーカ");
 		}else if (difmin == difmax){
 			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"\n"+ data[rand]);
 		}else if (difmin < difmax){
