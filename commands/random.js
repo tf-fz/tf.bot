@@ -53,6 +53,8 @@ song = song.concat(g.song)
 		let data1 = data0.filter( p => p.con >= difmin)
 		//定数上限の絞り込み
 		let data = data1.filter( q => q.con <= difmax).map(m => m.曲名)
+		let subdata = data1.filter( q => q.con <= difmax).map(m => m.con)
+		let maidata = data1.filter( q => q.con <= difmax).map(m => m.type)
 
 
 		
@@ -60,13 +62,17 @@ song = song.concat(g.song)
 		if (game == 'チュウニズム'){
 			await interaction.reply(game+"のランダム選曲は準備中です");
 		}else if (game == 'maimai'){
-			await interaction.reply(game+"のランダム選曲は準備中です");
+			if (difmin == difmax){
+				await interaction.reply("機種：" +game +"\n" +"難易度指定：" +difmin.toFixed(1) +"　譜面定数：" +subdata[rand].toFixed(1) +"\n譜面タイプ：" +maidata[rand] +"\n曲名：" +data[rand]);
+			}else if (difmin < difmax){
+				await interaction.reply("機種：" +game +"\n" +"難易度指定："+difmin.toFixed(1)+"～"+difmax.toFixed(1)+"　譜面定数：" +subdata[rand].toFixed(1) +"\n譜面タイプ：" +maidata[rand] +"\n曲名：" +data[rand]);
+			}
 		}else if (difmin > difmax){
-			await interaction.reply("max"+difmax+" , min"+difmin+" , お前頭グミ");
+			await interaction.reply("max"+difmax.toFixed(1)+" , min"+difmin.toFixed(1)+" , お前頭グミ");
 		}else if (difmin == difmax){
-			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"\n"+ data[rand]);
+			await interaction.reply("機種：" +game +"\n" +"難易度指定：" +difmin.toFixed(1) +"　譜面定数：" +subdata[rand].toFixed(1) +"\n曲名：" +data[rand]);
 		}else if (difmin < difmax){
-			await interaction.reply("機種:"+game+" , 難易度指定 "+difmin+"～"+difmax+"\n"+ data[rand]);
+			await interaction.reply("機種：" +game +"\n" +"難易度指定："+difmin.toFixed(1)+"～"+difmax.toFixed(1)+"　譜面定数：" +subdata[rand].toFixed(1) +"\n曲名：" +data[rand]);
 		}
 	},
 };
